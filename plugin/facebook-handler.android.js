@@ -32,7 +32,10 @@ function registerCallback(successCallback, cancelCallback, failCallback) {
         _act = act;
         loginManager.registerCallback(mCallbackManager, new com.facebook.FacebookCallback({
             onSuccess: function (result) {
-                successCallback(result);
+                try { successCallback(result); } 
+                catch(e) {
+                    console.log("facebook plugin error, anoying bug on origial, it still works fine");
+                }
             },
             onCancel: function () {
                 cancelCallback();
